@@ -1,4 +1,4 @@
-<?php /*a:2:{s:63:"D:\phpstudy_pro\WWW\mybackend\app\admin\view\index\welcome.html";i:1599805101;s:61:"D:\phpstudy_pro\WWW\mybackend\app\admin\view\common\base.html";i:1601191666;}*/ ?>
+<?php /*a:2:{s:63:"D:\phpstudy_pro\WWW\mybackend\app\admin\view\index\welcome.html";i:1602583180;s:61:"D:\phpstudy_pro\WWW\mybackend\app\admin\view\common\base.html";i:1602583180;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>

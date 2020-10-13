@@ -15,7 +15,7 @@ class Admin extends CurdController
      */
     public function login()
     {
-        if ($this->isLogin()) {
+        if ($this->auth->isLogin()) {
             return redirect((string) url('admin/index/index'))->send();
         } else {
             if ($this->request->isPost()) {
