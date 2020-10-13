@@ -1,0 +1,26 @@
+{extend name="common/base" /}
+{block name='body'}
+<div class="layui-row">
+    <div class="layui-fluid">
+        <div class="layui-card">
+            <!--搜索-->
+            <div class="layui-card-header ca-admin-header">
+                <form class="layui-form" id="DATA-PAGE-SEARCH">
+                </form>
+            </div>
+
+            <!--数据列表-->
+            <div class="layui-card-body">
+                <table class="layui-hide" id="DATA-PAGE-TABLE" lay-filter="DATA-PAGE-TABLE-FILTER"
+                       data-url="{:url('index')}"
+                       data-operate-add="{:$auth->check((string)url('create'))}"
+                       data-operate-edit="{:$auth->check((string)url('edit'))}"
+                       data-operate-del="{:$auth->check((string)url('delete'))}">
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{/block}

@@ -1,0 +1,103 @@
+{extend name="common/base" /}
+{block name='body'}
+<div class="layui-row">
+    <div class="layui-fluid">
+        <div class="layui-card">
+            <div class="layui-card-body">
+
+
+
+                <!--表单内容-->
+                <form class="layui-form">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">
+                            是否菜单
+                        </label>
+                        <div class="layui-input-inline">
+                            <input type="radio" {if isset($data.is_menu) && $data.is_menu == 1}checked{/if} name="is_menu" class="layui-input" value="1" title="是">
+                            <input type="radio" {if isset($data.is_menu) && $data.is_menu == 0}checked{/if} name="is_menu" class="layui-input" value="0" title="否">
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item layui-col-md6">
+                        <label class="layui-form-label">
+                            父级
+                        </label>
+                        <div class="layui-input-block">
+                            <select name="pid" lay-search>
+                                <option  value="">无</option>
+                                {if isset($menuList)}
+                                {foreach $menuList as $mkey => $mval}
+                                <option {if isset($data.pid) && $data.pid == $mval.id}selected{/if} value="{$mval.id}">{$mval.position|raw}</option>
+                                {/foreach}
+                                {/if}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item layui-col-md6">
+                        <label class="layui-form-label">
+                            地址
+                        </label>
+                        <div class="layui-input-block">
+                            <input type="text" value="{$data.url|default=''}" name="url" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">
+                            名称
+                        </label>
+                        <div class="layui-input-inline">
+                            <input type="text" value="{$data.title|default=''}" name="title" required lay-verify="required" placeholder="名称" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">
+                            图标
+                        </label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="icon" value="{$data.icon|default=''}" placeholder="" autocomplete="off" class="layui-input">
+                        </div>
+                        <span class="layui-btn layui-btn-primary">
+                                <i id="icon-privew" class="{$data.icon|default=''}"></i>
+                            </span>
+                        <span class="layui-btn search-btn" data-url="{:url('admin/icon/index')}"><i class="layui-icon layui-icon-search"></i>选择图标</span>
+                    </div>
+
+                    <div class="layui-form-item layui-col-md6">
+                        <label class="layui-form-label">
+                            备注
+                        </label>
+                        <div class="layui-input-block">
+                            <textarea name="remark" class="layui-textarea" rows="5">{$data.remark|default=''}</textarea>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">状态</label>
+                        <div class="layui-input-inline">
+                            <input type="checkbox" {if isset($data.status) && $data.status == 1}checked{/if} name="status" lay-skin="switch" lay-text="正常|禁用">
+                        </div>
+                    </div>
+
+                    <!--隐藏input-->
+                    <input type="hidden" name="id" value="{$data.id|default=''}">
+
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <button class="layui-btn" lay-submit lay-filter="admin-ajax-form-frame-btn" data-url="{:url('edit')}">立即提交</button>
+                            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                        </div>
+                    </div>
+
+                </form>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
