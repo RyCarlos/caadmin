@@ -1,0 +1,73 @@
+{extend name="common/base" /}
+{block name='body'}
+<div class="layui-row">
+    <div class="layui-fluid">
+        <div class="layui-card">
+            <div class="layui-card-body">
+
+
+
+                <!--表单内容-->
+                <form class="layui-form">
+
+                    <div class="layui-form-item layui-col-md6">
+                        <label class="layui-form-label">
+                            父级
+                        </label>
+                        <div class="layui-input-block">
+                            <select name="pid" lay-search>
+                                <option  value="0">无</option>
+                                {if isset($list)}
+                                    {foreach $list as $lkey => $lval}
+                                    <option {if isset($data.pid) && $data.pid == $lval.id}selected{/if} value="{$lval.id}">{$lval.position|raw}</option>
+                                    {/foreach}
+                                {/if}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">
+                            角色名称<span class="req-color">*</span>
+                        </label>
+                        <div class="layui-input-inline">
+                            <input type="text" value="{$data.name|default=''}" name="name" required lay-verify="required" placeholder="角色名称" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">
+                            权限
+                        </label>
+                        <div class="layui-input-block">
+                            <div id="data-tree"></div>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">状态</label>
+                        <div class="layui-input-inline">
+                            <input type="checkbox" {if isset($data.status) && $data.status == 1}checked{/if} name="status" lay-skin="switch" lay-text="正常|禁用">
+                        </div>
+                    </div>
+
+                    <!--隐藏input-->
+                    <input type="hidden" name="id" value="{$data.id|default=''}">
+                    <input id="TREE-DATA" type="hidden" value="{$roleList|default=''|json_encode}">
+
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <button class="layui-btn" lay-submit lay-filter="admin-ajax-form-frame-btn" data-url="{:url('create')}">立即提交</button>
+                            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                        </div>
+                    </div>
+
+                </form>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+{/block}

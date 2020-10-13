@@ -1,0 +1,110 @@
+{extend name="common/base" /}
+{block name='body'}
+<div class="layui-layout layui-layout-admin">
+
+    <!-- 头部 -->
+    <div class="layui-header">
+        <ul class="layui-nav layui-layout-left">
+
+            <li class="layui-nav-item left-open layui-nav-li">
+                <a href="javascript:;" title="侧边伸缩">
+                    <i class="layui-icon layui-icon-shrink-right" style="color: #333;font-size: 16px;"></i>
+                </a>
+            </li>
+
+            <li class="layui-nav-item refresh layui-nav-li">
+                <a href="javascript:;" title="侧边伸缩">
+                    <i class="layui-icon layui-icon-refresh-3" style="color: #333;font-size: 16px;"></i>
+                </a>
+            </li>
+
+        </ul>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <img src="__STATIC__/admin/img/avatar.jpg" class="layui-nav-img">
+                    Carlos
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">基本资料</a></dd>
+                    <dd><a href="{:url('admin/admin/loginOut')}">退出登录</a></dd>
+                </dl>
+            </li>
+        </ul>
+    </div>
+
+    <!-- 页面 -->
+    <div class="layui-tab layui-admin-tab" lay-allowClose="true" lay-filter="layui-admin-tab-header">
+        <ul class="layui-tab-title" id="ADMIN_APP_TABS">
+            <li lay-id="home" class=""><i class="layui-icon layui-icon-home"></i></li>
+        </ul>
+    </div>
+
+    <!-- 左侧导航 -->
+    <div class="layui-side layui-bg-black layui-side-menu">
+        <div class="layui-side-scroll">
+
+            <!--后台logo-->
+            <div class="layui-logo">
+                <span>Admin</span>
+            </div>
+
+
+            <!-- 左侧导航区域-->
+            <ul class="layui-nav layui-nav-tree left-nav">
+                {foreach $menus as $mkey => $mval}
+                <li class="layui-nav-item left-nav-li">
+                    <a data-layid="{$mval['id']}" data-is-href="{if !isset($mval['sub'])}1{/if}" data-url="{if !empty($mval['url'])}{:url($mval['url'])}{/if}" class="" href="javascript:;">
+                        <i lay-tips="{$mval.title}" class="{$mval.icon}"></i>
+                        <cite>{$mval.title}</cite>
+                        {if isset($mval['sub'])}
+                        <span class="layui-nav-more"></span>
+                        {/if}
+                    </a>
+                    {if isset($mval['sub'])}
+                        <dl class="layui-nav-child">
+                        {foreach $mval.sub as $skey => $sval}
+                            <dd>
+                                <a data-layid="{$sval['id']}" data-is-href="{if !isset($sval['sub'])}1{/if}" data-url="{if !empty($sval['url'])}{:url($sval['url'])}{/if}" href="javascript:;" >
+                                    {$sval.title}
+                                    {if isset($sval['sub'])}
+                                    <span class="layui-nav-more"></span>
+                                    {/if}
+                                </a>
+                                {if isset($sval['sub'])}
+                                <dl class="layui-nav-child">
+                                    {foreach $sval.sub as $sskey => $ssval}
+                                    <dd>
+                                        <a style="padding-left: 60px;" data-is-href="{if !isset($ssval['sub'])}1{/if}" data-layid="{$ssval['id']}" data-url="{if !empty($ssval['url'])}{:url($ssval['url'])}{/if}" href="javascript:;">
+                                            {$ssval.title}
+                                            {if isset($ssval['sub'])}
+                                            <span class="layui-nav-more"></span>
+                                            {/if}
+                                        </a>
+                                    </dd>
+                                    {/foreach}
+                                </dl>
+                                {/if}
+                            </dd>
+                        {/foreach}
+                        </dl>
+                    {/if}
+                </li>
+                {/foreach}
+            </ul>
+        </div>
+    </div>
+
+    <!-- 内容 -->
+    <div class="layui-body" id="ADMIN-APP-BODY">
+        <div class="layadmin-tabsbody-item layui-show">
+            <iframe src="{:url('admin/index/welcome')}" class="layadmin-iframe" frameborder="0"></iframe>
+        </div>
+    </div>
+
+    <!-- 底部固定区域 -->
+    <div class="layui-footer">
+        © layui.com - 底部固定区域
+    </div>
+</div>
+{/block}

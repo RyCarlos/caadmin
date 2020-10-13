@@ -1,0 +1,33 @@
+{extend name="common/base" /}
+{block name='body'}
+<div class="layui-row">
+    <div class="layui-fluid">
+        <div class="layui-card">
+
+            <!--搜索-->
+            <div class="layui-card-body">
+                <div class="layui-form">
+
+                    <div class="layui-inline">
+                        <input class="layui-input" placeholder="输入名称" autocomplete="off">
+                    </div>
+
+                    <div class="layui-inline">
+                        <input class="layui-input" placeholder="输入地址" autocomplete="off">
+                    </div>
+
+                    <button class="layui-btn layui-inline" data-type="reload">搜索</button>
+
+                </div>
+            </div>
+
+            <!--数据列表-->
+            <div class="layui-card-body">
+                <table class="layui-hide" id="DATA-PAGE-TABLE"  data-url="{:url('index')}" lay-filter="DATA-PAGE-TABLE-FILTER"></table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{/block}
