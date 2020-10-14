@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-# caadmin
-=======
+
 ThinkPHP 6.0
-===============
 
 > 运行环境要求PHP7.1+。
 
@@ -53,4 +50,4 @@ All rights reserved。
 ThinkPHP® 商标和著作权所有者为上海顶想信息科技有限公司。
 
 更多细节参阅 [LICENSE.txt](LICENSE.txt)
->>>>>>> master
+
