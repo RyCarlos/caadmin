@@ -115,7 +115,7 @@ layui.define(['layer','form'],function (exports){
         return false;
     });
 
-    //子页面吧表单提交监听
+    //子页面表单提交监听
     form.on('submit(admin-ajax-form-frame-btn)', function(data){
         common.ajaxFormFrameSubmit(this,data);
         return false;
